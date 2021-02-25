@@ -1,0 +1,146 @@
+@import "reset";
+@import "variables";
+
+$colors: (
+  color1: red,
+  color2: green,
+  color3: blue,
+);
+
+@each $key, $color in $colors {
+  .#{$color}-text {
+    color: $color;
+  }
+}
+
+@mixin setFontSize($value) {
+  @if $value == small {
+    font-size: 12px;
+  } @else if $value == medium {
+    font-size: 16px;
+  } @else if $value == large {
+    font-size: 20px;
+  } @else {
+    font-size: none;
+  }
+}
+
+header {
+  background: $header-bgcolor;
+}
+
+.btn {
+  border: none;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-download {
+  @extend .btn;
+  background-color: red;
+}
+
+.learn-more {
+  @extend .btn;
+  background: green;
+}
+
+@mixin para-style($size, $style) {
+  font-size: $size;
+  text-align: $style;
+  margin: 10px 0;
+}
+
+#about p {
+  @include para-style(18px, left);
+}
+#education p {
+  @include para-style(16px, justify);
+}
+
+// nav styling
+nav {
+  margin-top: 15px;
+  ul {
+    list-style-type: none;
+    li {
+      display: inline-block;
+      margin: 0 15px;
+
+      a {
+        display: inline-block;
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        transition: 0.4s;
+        border-radius: 5px;
+        @include setFontSize(large);
+      }
+      a:hover {
+        background: #000;
+      }
+    }
+  }
+}
+
+main {
+  background: $main-bgcolor;
+}
+
+[class*="col-"] {
+  float: left;
+}
+
+$i: 1;
+
+@while $i < 13 {
+  .col-#{$i} {
+    width: 100% / 12 * $i;
+  }
+  $i: $i + 1;
+}
+
+// .col-1 {
+//   width: 8.33%;
+// }
+// .col-2 {
+//   width: 16.66%;
+// }
+// .col-3 {
+//   width: 25%;
+// }
+// .col-4 {
+//   width: 33.33%;
+// }
+// .col-5 {
+//   width: 41.66%;
+// }
+// .col-6 {
+//   width: 50%;
+// }
+// .col-7 {
+//   width: 58.33%;
+// }
+// .col-8 {
+//   width: 66.66%;
+// }
+// .col-9 {
+//   width: 75%;
+// }
+// .col-10 {
+//   width: 83.33%;
+// }
+// .col-11 {
+//   width: 91.66%;
+// }
+// .col-12 {
+//   width: 100%;
+// }
+
+.row::after {
+  clear: both;
+  content: "";
+  display: table;
+}
